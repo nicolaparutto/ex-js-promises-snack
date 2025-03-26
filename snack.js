@@ -32,14 +32,17 @@ function getPost(postId) {
 				fetch(`https://dummyjson.com/users/${postData.userId}`)
 					.then(response => response.json())
 					.then(userData => {
-						postData.user = userData
-						resolve(postData)
+						const postUserData = {
+							...postData,
+							userData
+						}
+						resolve(postUserData)
 					})
 			})
 			.catch(error => reject(error))
 	})
 }
 
-// getPost(2)
-// 	.then(response => console.log(response))
-// 	.catch(error => console.log(error))
+getPost(2)
+	.then(response => console.log(response))
+	.catch(error => console.log(error))
